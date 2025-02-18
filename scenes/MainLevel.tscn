@@ -20,10 +20,13 @@ script = ExtResource("3")
 position = Vector2(70, 0)
 
 [node name="BlueShip" parent="." instance=ExtResource("2")]
-position = Vector2(72.7009, 421.901)
+position = Vector2(78.701, 451.901)
+rotation = 1.5708
+scale = Vector2(5, 5)
 lock_rotation = true
 
 [node name="ObjectiveArea" type="Area2D" parent="."]
+position = Vector2(0, 3)
 script = ExtResource("4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectiveArea"]

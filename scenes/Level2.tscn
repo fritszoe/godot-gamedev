@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://n3ubqtwg7uuw"]
+
+[ext_resource type="PackedScene" uid="uid://c5pduf7l7q5u0" path="res://scenes/GreenShip.tscn" id="1_yfsvq"]
+[ext_resource type="Script" path="res://scenes/horizontal_platform.gd" id="4_12ucm"]
+[ext_resource type="Script" path="res://scenes/objective_area_2.gd" id="5_e35c4"]
+[ext_resource type="PackedScene" uid="uid://d377gb4giw1vd" path="res://scenes/SnowPlatform.tscn" id="5_nxbg3"]
+[ext_resource type="Script" path="res://scenes/push_platform.gd" id="6_fhnt2"]
+
+[sub_resource type="GDScript" id="GDScript_fr8oy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_15dqr"]
+size = Vector2(138.75, 79)
+
+[node name="Level2" type="Node2D"]
+
+[node name="GreenShip" parent="." instance=ExtResource("1_yfsvq")]
+position = Vector2(119, 506)
+script = SubResource("GDScript_fr8oy")
+
+[node name="HorizontalPlatform" type="Node2D" parent="."]
+script = ExtResource("4_12ucm")
+
+[node name="SnowPlatform" parent="HorizontalPlatform" instance=ExtResource("5_nxbg3")]
+position = Vector2(160, 612)
+
+[node name="SnowPlatform2" parent="HorizontalPlatform" instance=ExtResource("5_nxbg3")]
+position = Vector2(98, 612)
+
+[node name="PushPlatform" type="Node2D" parent="."]
+script = ExtResource("6_fhnt2")
+
+[node name="SnowPlatform" parent="PushPlatform" instance=ExtResource("5_nxbg3")]
+position = Vector2(24, 481)
+rotation = 1.5708
+
+[node name="SnowPlatform2" parent="PushPlatform" instance=ExtResource("5_nxbg3")]
+position = Vector2(24, 547)
+rotation = 1.5708
+
+[node name="ObjectiveArea2" type="Area2D" parent="."]
+position = Vector2(0, 3)
+script = ExtResource("5_e35c4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectiveArea2"]
+position = Vector2(1077, 37)
+shape = SubResource("RectangleShape2D_15dqr")
+
+[node name="SnowPlatform" parent="." instance=ExtResource("5_nxbg3")]
+position = Vector2(637, 101)
+
+[node name="SnowPlatform" parent="SnowPlatform" instance=ExtResource("5_nxbg3")]
+position = Vector2(-63, 0)
+
+[node name="SnowPlatform" parent="SnowPlatform/SnowPlatform" instance=ExtResource("5_nxbg3")]
+position = Vector2(-66, 1)
+
+[node name="SnowPlatform" parent="SnowPlatform/SnowPlatform/SnowPlatform" instance=ExtResource("5_nxbg3")]
+position = Vector2(-66, 0)
+
+[node name="SnowPlatform2" parent="." instance=ExtResource("5_nxbg3")]
+position = Vector2(703, 100)
+
+[node name="SnowPlatform" parent="SnowPlatform2" instance=ExtResource("5_nxbg3")]
+position = Vector2(69, 0)
+
+[node name="SnowPlatform3" parent="." instance=ExtResource("5_nxbg3")]
+position = Vector2(375, 102)
+
+[node name="SnowPlatform3" parent="SnowPlatform3" instance=ExtResource("5_nxbg3")]
+position = Vector2(-61, 1)
+
+[node name="SnowPlatform4" parent="." instance=ExtResource("5_nxbg3")]
+position = Vector2(838, 101)
+
+[node name="SnowPlatform3" parent="SnowPlatform4" instance=ExtResource("5_nxbg3")]
+position = Vector2(65, -1)
+
+[node name="SnowPlatform3" parent="SnowPlatform4/SnowPlatform3" instance=ExtResource("5_nxbg3")]
+position = Vector2(68, -1)
+
+[connection signal="body_entered" from="ObjectiveArea2" to="ObjectiveArea2" method="_on_ObjectiveArea_body_entered"]
